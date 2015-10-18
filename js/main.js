@@ -1,15 +1,11 @@
 (function(global){
     var seminorInfo = {};
     //初期化
-    seminorInfo.init = function(options) {
-        options |= {};
-        var rankingTmpl = options.rankingTmpl || "<div class=\"${rank}\">${rank}位：${seminor.name}</div>";
-        var themesTmpl = options.themesTmpl || "<div id=\"${theme.id}\" class=\"${theme.id}\"><h3>${theme.title}</h3></div>";
-        var themeSeminorTmpl = options.themeSeminorTmpl || "<div class=\"${theme.id}_${seminor.id}\">${seminor.name}</div>";
-        var calTmpl = options.calTmpl || "<span class=\"title\"><a href=\"${seminor.detail}\" id=\"pop${seminor.id}\">${seminor.name}</a></span>";
-        var calTipTmpl = options.calTipTmpl || "<span>${seminor.name}<br>日時：${seminor.date}<br>開催会社：${seminor.corp}<br>最寄駅：${seminor.nearSta";
-
-        console.log("call init");
+    seminorInfo.init = function(cb) {
+        if (!cb ) {
+            throw "init callback is undifined";
+        }
+        var _cb = cb;
         //全seminor情報とランキング、テーマ別用のjsonをセットする
         $.getJSON("data/seminors.json", function(data) {
             seminorInfo.ranking = data.ranking; 
@@ -22,33 +18,36 @@
                 _seminors[seminor.id] = seminor;
             });
             seminorInfo.seminors = _seminors; 
-            console.log("done init");
-            //initが終わり次第各種表示を呼び出す
-            seminorInfo.showRanking(rankingTmpl);
-            seminorInfo.showThemes(themesTmpl, themeSeminorTmpl);
-            seminorInfo.showCalender(calTmpl, calTipTmpl);
+            //initが終わり次第callbackを呼び出す
+            cb();
         });
     };
 
     //ランキング表示
-    seminorInfo.showRanking = function(template) {
+    seminorInfo.showRanking = function(params) {
+        var elmId = params.elmId;
+        var rankingTmpl = params.rankingTmpl;
         $.each(seminorInfo.ranking, function(index, rankSeminorId){
             //jsonのrankingで設定したseminorのidを使ってseminorを取得
             var seminor = seminorInfo.seminors[rankSeminorId];
             //それっぽいところにappend.indexは0からなので+1すると順位
             var rank = index + 1;
-            $.tmpl(template,{
+            $.tmpl(rankingTmpl,{
                 rank: rank,
                 seminor: seminor
-            }).appendTo("#ranking");
+            }).appendTo("#" + elmId);
         });
     };
 
     //テーマ別表示
-    seminorInfo.showThemes = function(themesTmpl, themeSeminorTmpl) {
+    seminorInfo.showThemes = function(params) {
+        var elmId = params.elmId;
+        var themeElmId = params.themeElmId;
+        var themesTmpl = params.themesTmpl;
+        var themeSeminorTmpl = params.themeSeminorTmpl;
         //全テーマを持って来てroop
         $.each(seminorInfo.themes, function(index, theme){
-            var themesEl = $("#themes");
+            var themesEl = $("#" + elmId);
             $.tmpl(themesTmpl, {
                 theme: theme
             }).appendTo(themesEl);
@@ -58,22 +57,31 @@
                 $.tmpl(themeSeminorTmpl,{
                     theme: theme,
                     seminor: seminor
-                }).appendTo(themesEl.children("div#" + theme.id));
+                }).appendTo("#" + $.tmpl(themeElmId, {
+                    theme: theme,
+                }).text());
             });
         });
     };
 
-    seminorInfo.showCalender = function(calTmpl, calTipTmpl) {
-        console.log("call showCal");
+    seminorInfo.showCalender = function(params) {
+        var elmIdPrefix = params.elmIdPrefix;
+        var calTipElmId = params.calTipElmId;
+        var calTmpl = params.calTmpl;
+        var calTipTmpl = params.calTipTmpl;
         //全セミナーをループで回す
         $.each(seminorInfo.seminors, function(index,seminor){
             //seminorのdateを使って、あらかじめidを振っておいたcalendarのtdを取得し、そこにappend
             //pop用のidも振っておく
             $.tmpl(calTmpl, {
                seminor: seminor
-            }).appendTo($("#day_" + seminor.date.getDate()));
+            }).appendTo($("#" + elmIdPrefix + seminor.date.getDate()));
             //tooltip（既存サイトにあったので。）
-            $('#pop' + seminor.id).tooltipster({
+
+            var ctId = $.tmpl(calTipElmId, {
+                seminor : seminor
+            }).text();
+            $("#" + ctId).tooltipster({
                 content: $.tmpl(calTipTmpl, {
                     seminor: seminor
                 })

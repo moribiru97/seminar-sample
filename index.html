@@ -7,17 +7,44 @@
 <script type="text/javascript" src="js/jquery-1.11.3.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="js/jquery.tooltipster.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="js/jquery.tmpl.min.js" charset="UTF-8"></script>
-
-<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" charset="UTF-8"></script> -->
 <script type="text/javascript" src="js/main.js" charset="UTF-8"></script>
+
 <script>
 	$(document).ready(function() {
-        seminorInfo.init({
-            rankingTmpl     : "<div class=\"${rank}\">${rank}位：${seminor.name}</div>",
-            themesTmpl      : "<div id=\"${theme.id}\" class=\"${theme.id}\"><h3>${theme.title}</h3></div>",
-            themeSeminorTmpl: "<div class=\"${theme.id}_${seminor.id}\">${seminor.name}</div>",
-            calTmpl         : "<span class=\"title\"><a href=\"${seminor.detail}\" id=\"pop${seminor.id}\">${seminor.name}</a></span>",
-            calTipTmpl      : "<span>${seminor.name}<br>日時：${seminor.date}<br>開催会社：${seminor.corp}<br>最寄駅：${seminor.nearSta"
+        //jsで表示するtemplateを渡す。${変数名}でjsonのデータなどに変換する。
+        seminorInfo.init(function() {
+            //ランキングを表示するようのテンプレート. 変数: rank(順位), seminor(jsonのseminor)
+            var rankingTmpl = "<div class=\"${rank}\">${rank}位：${seminor.name}</div>";
+            seminorInfo.showRanking({
+                elmId       : "ranking",
+                rankingTmpl : rankingTmpl
+            });
+
+            //テーマ用elementのid
+            var themeElmId = "theme_${theme.id}"
+            //テーマ毎のテンプレート。【theme毎のelementはtheme.idを設定しないと動かない 変数: theme(jsonのthemes)
+            var themesTmpl = "<div id=\"" + themeElmId + "\" class=\"${theme.id}\"><h3>${theme.title}</h3></div>";
+            //テーマに紐づくセミナー表示用テンプレート 変数: theme(jsonのthemes), seminor(jsonのseminor)
+            var themeSeminorTmpl = "<div class=\"${theme.id}_${seminor.id}\">${seminor.name}</div>";
+            seminorInfo.showThemes({
+                elmId           : "themes",
+                themeElmId      : themeElmId,
+                themesTmpl      : themesTmpl,
+                themeSeminorTmpl: themeSeminorTmpl
+            });
+
+            //tip用のID 変数: seminor(jsonのseminor)
+            var calTipElmId = "pop${seminor.id}";
+            //カレンダーに表示するセミナー表示用テンプレート 変数: seminor(jsonのseminor)
+            var calTmpl = "<span class=\"title\"><a href=\"${seminor.detail}\" id=\"" + calTipElmId + "\">${seminor.name}</a></span>";
+            //カレンダーをマウスオーバーした時のtooltip用テンプレート 変数: seminor(jsonのseminor)
+            var calTipTmpl = "<span>${seminor.name}<br>日時：${seminor.date}<br>開催会社：${seminor.corp}<br>最寄駅：${seminor.nearSta}";
+            seminorInfo.showCalender({
+                elmIdPrefix : "day_",
+                calTipElmId : calTipElmId,
+                calTmpl     : calTmpl,
+                calTipTmpl  : calTipTmpl
+            });
         });
 	});
 </script>
