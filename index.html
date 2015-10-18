@@ -6,11 +6,19 @@
 <link href="css/tooltipster.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.11.3.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="js/jquery.tooltipster.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/jquery.tmpl.min.js" charset="UTF-8"></script>
+
 <!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" charset="UTF-8"></script> -->
 <script type="text/javascript" src="js/main.js" charset="UTF-8"></script>
 <script>
 	$(document).ready(function() {
-        seminorInfo.init();
+        seminorInfo.init({
+            rankingTmpl     : "<div class=\"${rank}\">${rank}位：${seminor.name}</div>",
+            themesTmpl      : "<div id=\"${theme.id}\" class=\"${theme.id}\"><h3>${theme.title}</h3></div>",
+            themeSeminorTmpl: "<div class=\"${theme.id}_${seminor.id}\">${seminor.name}</div>",
+            calTmpl         : "<span class=\"title\"><a href=\"${seminor.detail}\" id=\"pop${seminor.id}\">${seminor.name}</a></span>",
+            calTipTmpl      : "<span>${seminor.name}<br>日時：${seminor.date}<br>開催会社：${seminor.corp}<br>最寄駅：${seminor.nearSta"
+        });
 	});
 </script>
 </head>
