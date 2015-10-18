@@ -1,0 +1,48 @@
+/*----- calendar -----*/
+table.calendar caption{
+    margin-bottom:20px;
+    font-size:medium;
+}
+table.calendar {
+    width: 950px;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+    margin: 2px 0 40px;
+}
+table.calendar th, table.calendar td {
+    width: 14.2%;
+    border: 1px solid #dddddd;
+    padding: 2px;
+}
+table.calendar th {
+    font-size: small;
+}
+table.calendar .sunday{
+    background-color:#fee8e8;
+}
+table.calendar td {
+    height: 110px;
+    overflow-y: auto;
+    vertical-align: top;
+}
+table.calendar td span {
+    display: block;
+    text-align: right;
+    font-size: small;
+}
+table.calendar td span.title {
+    background-color: #ff5353;
+    text-align: left;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    font-size: small;
+}
+table.calendar td a {
+    color: #fff;
+    text-decoration: none;
+}
+table.calendar td a:hover {
+    text-decoration: underline;
+}
+

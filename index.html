@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link href="css/seminors.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/tooltipster.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.11.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/jquery.tooltipster.min.js" charset="UTF-8"></script>
+<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" charset="UTF-8"></script> -->
+<script type="text/javascript" src="js/main.js" charset="UTF-8"></script>
+<script>
+	$(document).ready(function() {
+        seminorInfo.init();
+	});
+</script>
+</head>
+<body>
+<article>
+    <section id="ranking">
+        <h2>アクセスランキング</h2>
+    </section>
+    <section id="themes">
+        <h2>テーマ</h2>
+    </section>
+    <section id="calender">
+        <h2>
+        <img src="http://seminarjohokan.com/img/select_tl.png" alt="セミナースケジュールから選択する" width="416" height="23">
+        </h2>
+        <table class="calendar">
+              <caption>
+              10月のセミナースケジュール
+              </caption>
+              <tbody><tr>
+                <th class="sunday">日</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+              </tr>
+              <tr>
+                <td class="sunday"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="day_1"><span>1</span></td>
+                <td id="day_2"><span>2</span></td>
+                <td id="day_3"><span>3</span></td>
+              </tr>
+              <tr>
+                <td id="day_4" class="sunday"><span>4</span></td>
+                <td id="day_5"><span>5</span></td>
+                <td id="day_6"><span>6</span></td>
+                <td id="day_7"><span>7</span></td>
+                <td id="day_8"><span>8</span></td>
+                <td id="day_9"><span>9</span></td>
+                <td id="day_10"><span>10</span></td>
+              </tr>
+              <tr>
+                <td id="day_11" class="sunday"><span>11</span></td>
+                <td id="day_12"><span>12</span></td>
+                <td id="day_13"><span>13</span></td>
+                <td id="day_14"><span>14</span></td>
+                <td id="day_15"><span>15</span></td>
+                <td id="day_16"><span>16</span></td>
+                <td id="day_17"><span>17</span></td>
+              </tr>
+              <tr>
+                <td id="day_18" class="sunday"><span>18</span></td>
+                <td id="day_19"><span>19</span></td>
+                <td id="day_20"><span>20</span></td>
+                <td id="day_21"><span>21</span></td>
+                <td id="day_22"><span>22</span></td>
+                <td id="day_23"><span>23</span></td>
+                <td id="day_24"><span>24</span></td>
+              </tr>
+              <tr>
+                <td id="day_25" class="sunday"></td>
+                <td id="day_26"><span>26</span></td>
+                <td id="day_27"><span>27</span></td>
+                <td id="day_28"><span>28</span></td>
+                <td id="day_29"><span>29</span></td>
+                <td id="day_30"><span>30</span></td>
+                <td id="day_31"><span>31</span></td>
+              </tr>
+            </tbody></table>
+    </section>
+</article>
+</body>
+</html>
