@@ -1,17 +1,22 @@
 (function(global){
     var seminorInfo = {};
     //初期化
-    seminorInfo.init = function(cb) {
+    seminorInfo.init = function(options, cb) {
         if (!cb ) {
             throw "init callback is undifined";
         }
+        var _targetCorpName = options.targetCorpName || null;
         var _cb = cb;
         //全seminor情報とランキング、テーマ別用のjsonをセットする
-        $.getJSON("data/seminors.json", function(data) {
+        $.getJSON("data/seminars.json", function(data) {
             seminorInfo.ranking = data.ranking; 
             seminorInfo.themes  = data.themes;
             var _seminors = {};
             $.each(data.seminors, function(i,seminor) {
+                //tagetCorpNameが指定されていたらそれ以外の会社を除外
+                if (_targetCorpName && seminor.corp !== _targetCorpName) {
+                    return;
+                }
                 //dateをparseして詰め直す
                 var d_ary = seminor.date.split("/");
                 seminor.date = new Date(parseInt(d_ary[0]),parseInt(d_ary[1]),parseInt(d_ary[2]));
