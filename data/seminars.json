@@ -1,6 +1,34 @@
 {
-    "ranking"   : [6,2,1,4,3],
-    "themes"     : [
+    "corps"      : [
+        {
+            "id"    : "1",
+            "name"  : "森ビル町田支社",
+            "detail": "http://mrbl.com"
+        },
+        {
+            "id"    : "2",
+            "name"  : "スーパーモリビル",
+            "detail": "http://mrbl2.com"
+        },
+        {
+            "id"    : "3",
+            "name"  : "モリビル商店",
+            "detail": "http://mrbl3.com"
+        },
+        {
+            "id"    : "4",
+            "name"  : "MoriBiru",
+            "detail": "http://mrbl4.com"
+        }
+    ],
+    "ranking"   : {
+        "all"          : [6,2,1,4,3],
+        "1"            : [6,1,4,5],
+        "2"            : [2],
+        "3"            : [3],
+        "4"            : [7]
+    },
+    "themes"    : [
         {
             "id"        : "special",
             "title"     : "スペシャルなやつ",
@@ -30,9 +58,8 @@
             "startTime" : "10:30",
             "endTime"   : "12:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "1",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl.com",
             "nearSta"   : "横浜線/古淵駅"
         },
         {
@@ -42,9 +69,8 @@
             "startTime" : "10:30",
             "endTime"   : "12:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "2",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl2.com",
             "nearSta"   : "横浜線/古淵駅"
         },
         {
@@ -54,9 +80,8 @@
             "startTime" : "10:30",
             "endTime"   : "12:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "3",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl3.com",
             "nearSta"   : "横浜線/古淵駅"
         },
         {
@@ -66,9 +91,8 @@
             "startTime" : "10:30",
             "endTime"   : "12:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "1",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl4.com",
             "nearSta"   : "横浜線/古淵駅"
         },
         {
@@ -78,9 +102,8 @@
             "startTime" : "11:30",
             "endTime"   : "13:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "1",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl5.com",
             "nearSta"   : "横浜線/古淵駅"
         },
         {
@@ -90,9 +113,8 @@
             "startTime" : "15:30",
             "endTime"   : "19:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "1",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl6.com",
             "nearSta"   : "横浜線/古淵駅"
         },
         {
@@ -102,9 +124,8 @@
             "startTime" : "11:30",
             "endTime"   : "13:30",
             "desc"      : "最高のセミナーやで",
-            "corp"      : "森ビル町田支社",
+            "corpId"    : "4",
             "location"  : "東京都町田市境川団地",
-            "detail"    : "http://mrbl7.com",
             "nearSta"   : "横浜線/古淵駅"
         }
     ]

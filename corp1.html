@@ -13,7 +13,7 @@
 	$(document).ready(function() {
         //jsで表示するtemplateを渡す。${変数名}でjsonのデータなどに変換する。
         //options.targetCorpNameを指定するとその会社だけ拾う
-        seminorInfo.init({targetCorpName:""}, function() {
+        seminorInfo.init({targetCorpId:"1"}, function() {
             //ランキングを表示するようのテンプレート. 変数: rank(順位), seminor(jsonのseminor)
             var rankingTmpl = "<div class=\"${rank}\">${rank}位：${seminor.name}</div>";
             seminorInfo.showRanking({
@@ -51,9 +51,6 @@
 </script>
 </head>
 <body>
-<div>
-    <p><a href="./corp1.html">corp1</a></p>
-</div>
 <article>
     <section id="ranking">
         <h2>アクセスランキング</h2>
